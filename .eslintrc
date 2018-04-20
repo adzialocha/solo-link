@@ -8,9 +8,6 @@
     "standard",
     "standard-react"
   ],
-  "globals": {
-    "PRODUCTION": true
-  },
   "parser": "babel-eslint",
   "parserOptions": {
     "sourceType": "module"

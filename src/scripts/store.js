@@ -11,7 +11,7 @@ export default function configureStore() {
     thunk,
   ];
 
-  if (!PRODUCTION) {
+  if (process.env.NODE_ENV === 'development') {
     middleware.push(createLogger());
   }
 

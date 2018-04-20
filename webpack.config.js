@@ -10,7 +10,7 @@ function getPath(filePath) {
 }
 
 const ASSETS_NAME = 'app';
-const ASSETS_PATH = getPath('app');
+const ASSETS_PATH = getPath('src');
 
 module.exports = (env, options) => {
   const isProduction = options.mode === 'production';
@@ -80,7 +80,7 @@ module.exports = (env, options) => {
     },
     plugins: [
       new webpack.DefinePlugin({
-        'PRODUCTION': JSON.stringify(isProduction),
+        'process.env.NODE_ENV': JSON.stringify(options.mode),
       }),
       new HtmlWebpackPlugin({
         template: `${ASSETS_PATH}/index.html`,
