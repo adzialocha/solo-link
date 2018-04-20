@@ -17,7 +17,7 @@ module.exports = (env, options) => {
   return {
     entry: getPath(`${ASSETS_PATH}/scripts/index.js`),
     output: {
-      filename: `${ASSETS_NAME}-[hash].js`,
+      filename: `${ASSETS_NAME}.js`,
       path: getPath('./dist'),
     },
     resolve: {
@@ -85,7 +85,7 @@ module.exports = (env, options) => {
         },
       }),
       new ExtractTextPlugin({
-        filename: `${ASSETS_NAME}-[hash].css`,
+        filename: `${ASSETS_NAME}.css`,
       }),
       new CopyWebpackPlugin([
         {
