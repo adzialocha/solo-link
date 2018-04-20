@@ -1,30 +1,17 @@
 import '../styles/app.scss';
 
-import OSC from 'osc-js';
+import React from 'react';
+import { Provider } from 'react-redux';
+import { render } from 'react-dom';
 
-const osc = new OSC();
+import configureStore from './store';
+import { App } from './views';
 
-osc.on('open', () => {
-  console.log('open');
+const store = configureStore();
 
-  setInterval(() => {
-    osc.send(new OSC.Message('/status'));
-  }, 1000);
-});
-
-osc.on('error', error => {
-  console.log(error);
-});
-
-osc.on('/status', message => {
-  console.log(message.args);
-});
-
-osc.open({
-  host: 'localhost',
-  port: 9789,
-});
-
-window.onbeforeunload = () => {
-  osc.close();
-};
+render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('app')
+);

@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -78,6 +79,9 @@ module.exports = (env, options) => {
       ],
     },
     plugins: [
+      new webpack.DefinePlugin({
+        'PRODUCTION': JSON.stringify(isProduction),
+      }),
       new HtmlWebpackPlugin({
         template: `${ASSETS_PATH}/index.html`,
         minify: {
