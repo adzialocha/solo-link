@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 
-import test from './test';
+import view from './view';
 
 const rootReducer = combineReducers({
-  test,
+  view,
 });
 
 export default rootReducer;

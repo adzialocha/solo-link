@@ -1,15 +1,16 @@
-import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
-class App extends Component {
-  static propTypes = {
-    children: PropTypes.object,
-  }
+import {
+  Navigation,
+  View,
+} from '../components';
 
+class App extends Component {
   render() {
     return (
       <main className='app' role='application'>
-        { this.props.children }
+        <Navigation />
+        <View />
       </main>
     );
   }
