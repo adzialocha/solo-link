@@ -98,8 +98,8 @@ const app = express();
 
 const staticPath = path.resolve(__dirname, STATIC_FOLDER_NAME);
 
-fs.exists(staticPath, exists => {
-  if (exists) {
+fs.access(staticPath, err => {
+  if (!err) {
     console.log(`${chalk.green('✔')} static folder found`);
   } else {
     console.log(`${chalk.red('✘')} static folder not found`);

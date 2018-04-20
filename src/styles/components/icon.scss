@@ -1,0 +1,15 @@
+.icon {
+  font-style: normal;
+}
+
+.icon--play {
+  &::after {
+    content: "►";
+  }
+}
+
+.icon--record {
+  &::after {
+    content: "◉";
+  }
+}

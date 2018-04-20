@@ -1,0 +1,9 @@
+.button-group {
+  height: 100%;
+}
+
+.button-group__item {
+  + .button-group__item {
+    margin-left: .5rem;
+  }
+}

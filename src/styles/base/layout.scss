@@ -1,6 +1,8 @@
 html,
 body {
   overflow: hidden;
+
+  height: 100%;
 }
 
 html {
@@ -15,4 +17,8 @@ body {
   font-weight: $font-base-weight;
   font-size: $font-base-size;
   font-family: $font-base-family;
+}
+
+.wrapper {
+  height: 100%;
 }

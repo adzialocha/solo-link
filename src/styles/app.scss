@@ -7,7 +7,15 @@
 // base
 @import "base/buttons";
 @import "base/global";
+@import "base/inputs";
 @import "base/layout";
+@import "base/typography";
 
 // components
-// @import "components/...";
+@import "components/app";
+@import "components/bar";
+@import "components/button-group";
+@import "components/form";
+@import "components/icon";
+@import "components/settings-view";
+@import "components/view";

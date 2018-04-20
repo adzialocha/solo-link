@@ -5,12 +5,9 @@ input[type="reset"],
 input[type="submit"] {
   display: inline-block;
 
-  padding-top: 1rem;
-  padding-right: 2rem;
-  padding-bottom: 1rem;
-  padding-left: 2rem;
+  padding: $default-spacing;
 
-  border: 2px solid $button-border-color;
+  border: 0;
 
   white-space: nowrap;
 
@@ -20,15 +17,68 @@ input[type="submit"] {
 
   font-weight: $font-weight-bold;
 
+  outline: 0;
+
   text-align: center;
 
   cursor: pointer;
 
-  &[disabled] {
-    color: $text-color;
+  &:hover {
+    opacity: .7;
+  }
 
-    background-color: $button-disabled-color;
+  &[disabled] {
+    color: $button-disabled-color;
+
+    background-color: $button-disabled-background-color;
 
     cursor: default;
   }
+}
+
+.button--gray {
+  background-color: $gray;
+}
+
+.button--red {
+  background-color: $red;
+}
+
+.button--green {
+  background-color: $green;
+}
+
+.button--blue {
+  background-color: $blue;
+}
+
+.button--clear {
+  background-color: transparent;
+
+  &.button--gray {
+    color: $gray;
+  }
+
+  &.button--red {
+    color: $red;
+  }
+
+  &.button--green {
+    color: $green;
+  }
+
+  &.button--blue {
+    color: $blue;
+  }
+}
+
+.button--round {
+  display: block;
+
+  width: 3rem;
+  height: 3rem;
+
+  padding: 0;
+
+  border-radius: 50%;
 }

@@ -1,0 +1,22 @@
+.bar {
+  position: fixed;
+
+  top: 0;
+  left: 0;
+
+  z-index: map-get($z-index, "bar");
+
+  display: flex;
+
+  width: 100%;
+  height: $bar-height;
+
+  background-color: $gray-dark;
+
+  align-items: center;
+}
+
+.bar__panel {
+  padding-right: $default-spacing;
+  padding-left: $default-spacing;
+}

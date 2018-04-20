@@ -1,13 +1,16 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import classnames from 'classnames';
 import { connect } from 'react-redux';
 
 import { changeViewTo } from '../actions/view';
 
-class Navigation extends Component {
+class BarStatus extends Component {
   static propTypes = {
     changeViewTo: PropTypes.func.isRequired,
     current: PropTypes.string.isRequired,
+    isSocketError: PropTypes.bool.isRequired,
+    isSocketOpen: PropTypes.bool.isRequired,
   }
 
   onStatusClicked() {
@@ -20,17 +23,24 @@ class Navigation extends Component {
 
   render() {
     return (
-      <div className='navigation'>
+      <div className='button-group'>
         { this.renderStatus() }
       </div>
     );
   }
 
   renderStatus() {
+    const className = classnames('button button--round button-group__item', {
+      'button--gray': !this.props.isSocketOpen,
+      'button--green': this.props.isSocketOpen,
+      'button--red': this.props.isSocketError,
+    });
+
     return (
-      <button onClick={this.onStatusClicked}>
-        Status
-      </button>
+      <button
+        className={className}
+        onClick={this.onStatusClicked}
+      />
     );
   }
 
@@ -42,11 +52,15 @@ class Navigation extends Component {
 }
 
 function mapStateToProps(state) {
-  return state.view;
+  return {
+    current: state.view.current,
+    isSocketError: state.osc.isError,
+    isSocketOpen: state.osc.isOpen,
+  };
 }
 
 export default connect(
   mapStateToProps, {
     changeViewTo,
   }
-)(Navigation);
+)(BarStatus);

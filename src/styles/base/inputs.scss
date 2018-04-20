@@ -1,0 +1,80 @@
+textarea {
+  display: block;
+
+  min-width: 100%;
+  max-width: 100%;
+  min-height: 20rem;
+
+  padding: $default-spacing;
+}
+
+select {
+  cursor: pointer;
+}
+
+input[type="date"],
+input[type="email"],
+input[type="number"],
+input[type="password"],
+input[type="search"],
+input[type="text"],
+input[type="time"],
+input[type="url"],
+input:not([type]),
+textarea,
+select {
+  padding: $default-spacing;
+
+  appearance: none;
+
+  border: 0;
+  border-radius: 0;
+
+  color: $input-color;
+
+  background-color: $input-background-color;
+
+  &:focus {
+    outline: 0;
+  }
+
+  &[disabled] {
+    color: $input-disabled-color;
+
+    background-color: $input-disabled-background-color;
+
+    cursor: default;
+  }
+}
+
+input[type="radio"] {
+  appearance: none;
+
+  cursor: pointer;
+
+  &::before {
+    display: "block";
+
+    content: "◯";
+
+    color: $input-color;
+
+    font-weight: $font-weight-bold;
+  }
+
+  &:checked {
+    &::before {
+      content: "◉";
+    }
+  }
+
+  &:focus {
+    outline: 0;
+  }
+
+  &[disabled] {
+    background-color: $input-disabled-color;
+
+    cursor: default;
+  }
+}
