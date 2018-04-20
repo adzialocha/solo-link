@@ -9,7 +9,7 @@ const initialState = {
   isReady: false,
 };
 
-export default function view(state = initialState, action) {
+export default function osc(state = initialState, action) {
   switch (action.type) {
     case ActionTypes.OSC_READY:
       return update(state, {

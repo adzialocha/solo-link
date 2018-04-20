@@ -2,11 +2,11 @@
 $black: #000;
 $white: #fff;
 
-$gray-darkest: #111;
-$gray-darker: #333;
-$gray-dark: #555;
-$gray: #777;
-$gray-light: #999;
+$gray-darkest: #222;
+$gray-darker: #444;
+$gray-dark: #666;
+$gray: #888;
+$gray-light: #aaa;
 $gray-lighter: #ccc;
 $gray-lightest: #eee;
 
@@ -35,7 +35,7 @@ $default-spacing: 1rem;
 // buttons
 $button-background-color: $black;
 $button-color: $white;
-$button-disabled-background-color: transparent;
+$button-disabled-background-color: $gray-darkest;
 $button-disabled-color: $gray-dark;
 
 // inputs

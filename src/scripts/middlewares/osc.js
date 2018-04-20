@@ -1,8 +1,13 @@
 import OSC from 'osc-js';
 
+import AbletonSetup from '../services/ableton-setup';
 import ActionTypes from '../actionTypes';
 
 const osc = new OSC();
+
+const abletonSetup = new AbletonSetup({
+  osc,
+});
 
 export const OSC_ACTION = Symbol('osc-middleware-action');
 export const OSC_SEND = Symbol('osc-middleware-send');
@@ -51,11 +56,37 @@ function handleAction(store, type) {
     if (state.osc.isOpen) {
       osc.close();
     }
+  } else if (type === 'setup') {
+    if (abletonSetup.isLoading) {
+      return;
+    }
+
+    store.dispatch({
+      type: ActionTypes.OSC_SETUP_BEGIN,
+    });
+
+    abletonSetup.load()
+      .then(setup => {
+        store.dispatch({
+          setup,
+          type: ActionTypes.OSC_SETUP_END,
+        });
+      });
   }
 }
 
 function sendMessage(address, args) {
-  osc.send(new OSC.Message(address, ...args));
+  if (typeof args !== 'object') {
+    osc.send(new OSC.Message(address, ...args));
+  } else {
+    const message = new OSC.Message(address);
+
+    args.forEach(item => {
+      message.add(item);
+    });
+
+    osc.send(message);
+  }
 }
 
 export default store => next => action => {

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import {
   SettingsNetwork,
-  SettingsDevices,
+  SettingsSetup,
 } from '../components';
 
 class SettingsView extends Component {
@@ -15,8 +15,8 @@ class SettingsView extends Component {
         </div>
 
         <div className='settings-view__panel'>
-          <h2>Devices</h2>
-          <SettingsDevices />
+          <h2>Setup</h2>
+          <SettingsSetup />
         </div>
       </section>
     );

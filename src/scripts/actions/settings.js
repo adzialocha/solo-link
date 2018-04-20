@@ -1,5 +1,7 @@
 import ActionTypes from '../actionTypes';
 
+import { OSC_ACTION } from '../middlewares/osc';
+
 export function saveSettings(namespace, settings) {
   return {
     namespace,
@@ -11,5 +13,13 @@ export function saveSettings(namespace, settings) {
 export function loadSettings() {
   return {
     type: ActionTypes.SETTINGS_LOAD,
+  };
+};
+
+export function loadAbletonSetup() {
+  return {
+    [OSC_ACTION]: {
+      type: 'setup',
+    },
   };
 };
