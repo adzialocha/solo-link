@@ -26,6 +26,7 @@
         ]
       }
     ],
+    "no-descending-specificity": null,
     "declaration-empty-line-before": null,
     "number-leading-zero": "never",
     "string-quotes": "double",

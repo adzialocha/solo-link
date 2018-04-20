@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { saveSettings } from '../actions/settings';
+import { saveNetworkSettings } from '../actions/settings';
 import { open, close } from '../actions/osc';
 
 class SettingsNetwork extends Component {
@@ -12,7 +12,7 @@ class SettingsNetwork extends Component {
     isError: PropTypes.bool.isRequired,
     isOpen: PropTypes.bool.isRequired,
     open: PropTypes.func.isRequired,
-    saveSettings: PropTypes.func.isRequired,
+    saveNetworkSettings: PropTypes.func.isRequired,
     settings: PropTypes.object.isRequired,
   }
 
@@ -21,11 +21,11 @@ class SettingsNetwork extends Component {
 
     const { name, value } = event.target;
 
-    const newValues = Object.assign({}, this.props.settings, {
+    const newSettings = Object.assign({}, this.props.settings, {
       [name]: value,
     });
 
-    this.props.saveSettings('network', newValues);
+    this.props.saveNetworkSettings(newSettings);
   }
 
   onConnectClicked(event) {
@@ -144,6 +144,6 @@ export default connect(
   mapStateToProps, {
     close,
     open,
-    saveSettings,
+    saveNetworkSettings,
   }
 )(SettingsNetwork);

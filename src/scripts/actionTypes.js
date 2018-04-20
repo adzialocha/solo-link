@@ -9,7 +9,9 @@ export default keyMirror({
   OSC_SETUP_END: null,
 
   SETTINGS_LOAD: null,
-  SETTINGS_SAVE: null,
+  SETTINGS_NETWORK_SAVE: null,
+  SETTINGS_PARAMETERS_ADD: null,
+  SETTINGS_PARAMETERS_REMOVE: null,
 
   VIEW_CHANGE: null,
 });

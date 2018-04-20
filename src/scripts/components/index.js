@@ -3,4 +3,5 @@ export { default as BarStatus } from './BarStatus';
 export { default as BarTransport } from './BarTransport';
 export { default as SettingsNetwork } from './SettingsNetwork';
 export { default as SettingsSetup } from './SettingsSetup';
+export { default as SetupList } from './SetupList';
 export { default as View } from './View';
