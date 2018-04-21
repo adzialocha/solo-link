@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 
+import { Editor } from '../components';
+
 class EditorView extends Component {
   render() {
     return (
-      <section>
-        <h1>EditorView</h1>
+      <section className='editor-view'>
+        <Editor />
       </section>
     );
   }

@@ -124,7 +124,7 @@ class SettingsNetwork extends Component {
 
   renderError() {
     if (!this.props.isError) {
-      return;
+      return null;
     }
 
     const { errorMessage } = this.props;

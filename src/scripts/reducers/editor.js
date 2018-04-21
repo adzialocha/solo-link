@@ -3,14 +3,14 @@ import update from 'immutability-helper';
 import ActionTypes from '../actionTypes';
 
 const initialState = {
-  currentView: 'settings',
+  isSidebarExpanded: false,
 };
 
-export default function view(state = initialState, action) {
+export default function editor(state = initialState, action) {
   switch (action.type) {
-    case ActionTypes.VIEW_CHANGE:
+    case ActionTypes.EDITOR_TOGGLE_SIDEBAR:
       return update(state, {
-        currentView: { $set: action.name },
+        isSidebarExpanded: { $set: !state.isSidebarExpanded },
       });
     default:
       return state;

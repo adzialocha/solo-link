@@ -8,6 +8,8 @@ export default keyMirror({
   OSC_SETUP_BEGIN: null,
   OSC_SETUP_END: null,
 
+  EDITOR_TOGGLE_SIDEBAR: null,
+
   SCENES_ADD: null,
   SCENES_LOAD: null,
   SCENES_REMOVE: null,

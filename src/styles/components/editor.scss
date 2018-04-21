@@ -1,0 +1,21 @@
+.editor {
+  display: flex;
+
+  height: 100%;
+}
+
+.editor__parameters {
+  overflow: auto;
+
+  flex: 1;
+}
+
+.editor__sidebar {
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  width: 30rem;
+  height: 100%;
+
+  background-color: $gray-darkest;
+}

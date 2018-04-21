@@ -40,7 +40,7 @@ class SetupList extends Component {
       });
 
       if (devices.length === 0) {
-        return;
+        return null;
       }
 
       return (

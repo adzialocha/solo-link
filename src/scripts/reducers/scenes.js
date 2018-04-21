@@ -19,7 +19,7 @@ function updateStorage(state) {
   return state;
 }
 
-export default function settings(state = initialState, action) {
+export default function scenes(state = initialState, action) {
   switch (action.type) {
     case ActionTypes.SCENES_LOAD:
       if (hasItem(STORAGE_KEY)) {

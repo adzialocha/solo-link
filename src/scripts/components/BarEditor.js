@@ -3,12 +3,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { addScene, removeScene } from '../actions/scenes';
+import { toggleSidebar } from '../actions/editor';
 
 class BarEditor extends Component {
   static propTypes = {
     addScene: PropTypes.func.isRequired,
     currentSceneId: PropTypes.number,
     removeScene: PropTypes.func.isRequired,
+    toggleSidebar: PropTypes.func.isRequired,
   }
 
   onAddSceneClicked() {
@@ -24,18 +26,13 @@ class BarEditor extends Component {
   }
 
   onSidebarToggleClicked() {
+    this.props.toggleSidebar();
   }
 
   render() {
     return (
       <div className='button-group'>
-        <button
-          className='button button--round button--gray button-group__item'
-          onClick={this.onSidebarToggleClicked}
-        >
-          <i className='icon icon--toggle' />
-        </button>
-
+        { this.renderToggleSidebarButton() }
         { this.renderRemoveSceneButton() }
 
         <button
@@ -48,9 +45,24 @@ class BarEditor extends Component {
     );
   }
 
+  renderToggleSidebarButton() {
+    if (!this.props.currentSceneId) {
+      return null;
+    }
+
+    return (
+      <button
+        className='button button--round button--gray button-group__item'
+        onClick={this.onSidebarToggleClicked}
+      >
+        <i className='icon icon--toggle' />
+      </button>
+    );
+  }
+
   renderRemoveSceneButton() {
     if (!this.props.currentSceneId) {
-      return;
+      return null;
     }
 
     return (
@@ -82,5 +94,6 @@ export default connect(
   mapStateToProps, {
     addScene,
     removeScene,
+    toggleSidebar,
   }
 )(BarEditor);

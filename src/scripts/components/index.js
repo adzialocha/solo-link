@@ -4,6 +4,8 @@ export { default as BarScenes } from './BarScenes';
 export { default as BarScenesItem } from './BarScenesItem';
 export { default as BarStatus } from './BarStatus';
 export { default as BarTransport } from './BarTransport';
+export { default as Editor } from './Editor';
+export { default as EditorParameter } from './EditorParameter';
 export { default as SettingsNetwork } from './SettingsNetwork';
 export { default as SettingsSetup } from './SettingsSetup';
 export { default as SetupList } from './SetupList';
