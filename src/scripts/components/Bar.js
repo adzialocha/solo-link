@@ -48,7 +48,7 @@ class Bar extends Component {
 
 function mapStateToProps(state) {
   return {
-    isSettingsView: state.view.current === 'settings',
+    isSettingsView: state.view.currentView === 'settings',
   };
 }
 

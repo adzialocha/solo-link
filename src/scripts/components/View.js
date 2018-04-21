@@ -9,7 +9,7 @@ import {
 
 class View extends Component {
   static propTypes = {
-    current: PropTypes.string.isRequired,
+    currentView: PropTypes.string.isRequired,
   }
 
   render() {
@@ -21,7 +21,7 @@ class View extends Component {
   }
 
   renderContent() {
-    if (this.props.current === 'settings') {
+    if (this.props.currentView === 'settings') {
       return <SettingsView />;
     }
 

@@ -8,13 +8,13 @@ import { changeViewTo } from '../actions/view';
 class BarStatus extends Component {
   static propTypes = {
     changeViewTo: PropTypes.func.isRequired,
-    current: PropTypes.string.isRequired,
+    currentView: PropTypes.string.isRequired,
     isSocketError: PropTypes.bool.isRequired,
     isSocketOpen: PropTypes.bool.isRequired,
   }
 
   onStatusClicked() {
-    if (this.props.current !== 'settings') {
+    if (this.props.currentView !== 'settings') {
       this.props.changeViewTo('settings');
     } else {
       this.props.changeViewTo('editor');
@@ -53,7 +53,7 @@ class BarStatus extends Component {
 
 function mapStateToProps(state) {
   return {
-    current: state.view.current,
+    currentView: state.view.currentView,
     isSocketError: state.osc.isError,
     isSocketOpen: state.osc.isOpen,
   };
