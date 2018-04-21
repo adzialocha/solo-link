@@ -3,7 +3,7 @@ import update from 'immutability-helper';
 import ActionTypes from '../actionTypes';
 
 const initialState = {
-  currentView: 'settings',
+  currentView: 'editor',
 };
 
 export default function view(state = initialState, action) {

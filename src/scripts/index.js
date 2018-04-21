@@ -6,9 +6,10 @@ import { render } from 'react-dom';
 
 import configureStore from './store';
 import { App } from './views';
-import { init, close } from './actions/osc';
+import { init, open, close } from './actions/osc';
 import { loadScenes } from './actions/scenes';
 import { loadSettings } from './actions/settings';
+import { loadSetup } from './actions/setup';
 
 const store = configureStore();
 
@@ -22,7 +23,10 @@ function initializeOSC() {
 
 function initializeProject() {
   store.dispatch(loadScenes());
+  store.dispatch(loadSetup());
   store.dispatch(loadSettings());
+
+  store.dispatch(open());
 }
 
 initializeOSC();

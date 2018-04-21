@@ -3,21 +3,21 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { SetupList } from './';
-import { loadAbletonSetup } from '../actions/setup';
+import { updateAbletonSetup } from '../actions/setup';
 
 class SettingsSetup extends Component {
   static propTypes = {
     isComplete: PropTypes.bool.isRequired,
     isLoading: PropTypes.bool.isRequired,
     isOpen: PropTypes.bool.isRequired,
-    loadAbletonSetup: PropTypes.func.isRequired,
     setup: PropTypes.object.isRequired,
+    updateAbletonSetup: PropTypes.func.isRequired,
   }
 
   onLoadClicked(event) {
     event.preventDefault();
 
-    this.props.loadAbletonSetup();
+    this.props.updateAbletonSetup();
   }
 
   render() {
@@ -57,7 +57,7 @@ class SettingsSetup extends Component {
     if (!this.props.isComplete) {
       return (
         <div className='form__error'>
-          <p>Please load setup first</p>
+          <p>Please load setup first!</p>
         </div>
       );
     }
@@ -74,27 +74,21 @@ class SettingsSetup extends Component {
 
 function mapStateToProps(state) {
   const {
-    devices,
     isComplete,
     isLoading,
-    parameters,
-    tracks,
+    setup,
   } = state.setup;
 
   return {
     isComplete,
     isLoading,
     isOpen: state.osc.isOpen,
-    setup: {
-      devices,
-      parameters,
-      tracks,
-    },
+    setup,
   };
 }
 
 export default connect(
   mapStateToProps, {
-    loadAbletonSetup,
+    updateAbletonSetup,
   }
 )(SettingsSetup);

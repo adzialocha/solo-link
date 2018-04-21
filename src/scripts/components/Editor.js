@@ -67,7 +67,7 @@ function mapStateToProps(state) {
     ...state.editor,
     currentSceneId: state.scenes.currentSceneId,
     parameterIds: state.settings.parameterIds,
-    parameters: state.setup.parameters,
+    parameters: state.setup.setup.parameters,
   };
 }
 

@@ -62,14 +62,14 @@ function handleAction(store, type) {
     }
 
     store.dispatch({
-      type: ActionTypes.OSC_SETUP_BEGIN,
+      type: ActionTypes.SETUP_UPDATE_BEGIN,
     });
 
     abletonSetup.load()
       .then(setup => {
         store.dispatch({
           setup,
-          type: ActionTypes.OSC_SETUP_END,
+          type: ActionTypes.SETUP_UPDATE_END,
         });
       });
   }
