@@ -26,7 +26,7 @@ class SetupList extends Component {
   render() {
     return (
       <div className='setup-list'>
-        <ul className='setup-list__tracks'>
+        <ul className='setup-list__root'>
           { this.renderTracks(this.props.setup.tracks) }
         </ul>
       </div>
@@ -39,11 +39,16 @@ class SetupList extends Component {
         return track.deviceIds.includes(device.id);
       });
 
-      return (
-        <li className='setup-list__tracks-item' key={track.id}>
-          <strong>Name: { track.name }</strong>
+      if (devices.length === 0) {
+        return;
+      }
 
-          <ul className='setup-list__devices'>
+      return (
+        <li className='setup-list__item setup-list__item--track' key={track.id}>
+          <span className='setup-list__badge'>Track</span>
+          <strong>{ track.name }</strong>
+
+          <ul className='setup-list__inner'>
             { this.renderDevices(devices) }
           </ul>
         </li>
@@ -58,10 +63,11 @@ class SetupList extends Component {
       });
 
       return (
-        <li className='setup-list__devices-item' key={device.id}>
-          <strong>Name: { device.name }</strong>
+        <li className='setup-list__item setup-list__item--device' key={device.id}>
+          <span className='setup-list__badge'>Device</span>
+          <strong>{ device.name }</strong>
 
-          <ul className='setup-list__parameters'>
+          <ul className='setup-list__inner'>
             { this.renderParameters(parameters) }
           </ul>
         </li>
@@ -72,17 +78,25 @@ class SetupList extends Component {
   renderParameters(parameters) {
     return parameters.map(parameter => {
       return (
-        <li className='setup-list__parameters-item' key={parameter.id}>
-          <strong>Name: { parameter.name }</strong>
-          <p>Min: { parameter.min }</p>
-          <p>Max: { parameter.max }</p>
+        <li className='setup-list__item setup-list__item--parameter' key={parameter.id}>
+          <label className='setup-list__parameters-label'>
+            <div className='setup-list__parameters-name'>
+              <span className='setup-list__badge'>Parameter</span>
+              <strong>{ parameter.name }</strong>
 
-          <input
-            checked={this.props.parameterIds.includes(parameter.id)}
-            name={parameter.id}
-            type='checkbox'
-            onChange={this.onParameterChanged}
-          />
+              <span className='setup-list__parameters-values'>
+                ({ parameter.min } - { parameter.max })
+              </span>
+            </div>
+
+            <input
+              className='setup-list__parameters-checkbox'
+              checked={this.props.parameterIds.includes(parameter.id)}
+              name={parameter.id}
+              type='checkbox'
+              onChange={this.onParameterChanged}
+            />
+          </label>
         </li>
       );
     });

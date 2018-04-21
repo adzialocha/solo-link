@@ -1,0 +1,61 @@
+.setup-list {
+  max-height: 50rem;
+
+  overflow: scroll;
+}
+
+.setup-list__inner {
+  margin-top: $default-spacing;
+}
+
+.setup-list__badge {
+  margin-right: $default-spacing;
+
+  padding: .2rem;
+}
+
+.setup-list__item--device {
+  .setup-list__badge {
+    background-color: $red;
+  }
+
+  .setup-list__inner {
+    padding: $default-spacing;
+
+    background-color: $gray-darkest;
+  }
+}
+
+.setup-list__item--parameter {
+  .setup-list__badge {
+    background-color: $blue;
+  }
+
+  &:nth-child(even) {
+    background-color: lighten($gray-darkest, 2%);
+  }
+}
+
+.setup-list__item {
+  + .setup-list__item {
+    margin-top: $default-spacing;
+  }
+}
+
+.setup-list__parameters-label {
+  display: flex;
+
+  justify-content: space-between;
+
+  cursor: pointer;
+
+  user-select: none;
+}
+
+.setup-list__parameters-values {
+  margin-left: $default-spacing;
+
+  color: $gray-light;
+
+  font-size: .9rem;
+}

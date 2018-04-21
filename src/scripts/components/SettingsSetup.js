@@ -50,6 +50,10 @@ class SettingsSetup extends Component {
   }
 
   renderSetup() {
+    if (this.props.isLoading) {
+      return <p>Loading ...</p>;
+    }
+
     if (!this.props.isComplete) {
       return (
         <div className='form__error'>
