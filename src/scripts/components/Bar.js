@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import {
-  BarScene,
+  BarEditor,
+  BarScenes,
   BarStatus,
   BarTransport,
 } from './';
@@ -15,32 +16,36 @@ class Bar extends Component {
 
   render() {
     if (this.props.isSettingsView) {
-      return this.renderSettingsBar();
+      return (
+        <div className='bar'>
+          { this.renderStatusPanel() }
+        </div>
+      );
     }
 
     return (
       <div className='bar'>
-        <div className='bar__panel'>
-          <BarStatus />
-        </div>
+        { this.renderStatusPanel() }
 
         <div className='bar__panel'>
           <BarTransport />
         </div>
 
+        <div className='bar__panel'>
+          <BarScenes />
+        </div>
+
         <div className='bar__panel bar__panel--right'>
-          <BarScene />
+          <BarEditor />
         </div>
       </div>
     );
   }
 
-  renderSettingsBar() {
+  renderStatusPanel() {
     return (
-      <div className='bar'>
-        <div className='bar__panel'>
-          <BarStatus />
-        </div>
+      <div className='bar__panel'>
+        <BarStatus />
       </div>
     );
   }

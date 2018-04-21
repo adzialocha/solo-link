@@ -36,12 +36,14 @@ export default function settings(state = initialState, action) {
 
       return updateStorage(
         update(state, {
+          currentSceneId: { $set: newScene.id },
           scenes: { $push: [newScene] },
         })
       );
     case ActionTypes.SCENES_REMOVE:
       return updateStorage(
         update(state, {
+          currentSceneId: { $set: null },
           scenes: {
             $splice: [[state.scenes.findIndex(s => s.id === action.id), 1]],
           },

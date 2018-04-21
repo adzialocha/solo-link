@@ -22,6 +22,12 @@
   }
 }
 
+.icon--remove {
+  &::after {
+    content: "✕";
+  }
+}
+
 .icon--toggle {
   &::after {
     content: "↹";
