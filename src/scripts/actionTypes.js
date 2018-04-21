@@ -12,6 +12,7 @@ export default keyMirror({
   SETTINGS_NETWORK_SAVE: null,
   SETTINGS_PARAMETERS_ADD: null,
   SETTINGS_PARAMETERS_REMOVE: null,
+  SETTINGS_RESET: null,
 
   VIEW_CHANGE: null,
 });

@@ -26,3 +26,9 @@ export function removeParameterId(id) {
     type: ActionTypes.SETTINGS_PARAMETERS_REMOVE,
   };
 };
+
+export function resetSettings() {
+  return {
+    type: ActionTypes.SETTINGS_RESET,
+  };
+};

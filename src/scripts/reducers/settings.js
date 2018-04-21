@@ -46,6 +46,10 @@ export default function settings(state = initialState, action) {
           },
         })
       );
+    case ActionTypes.SETTINGS_RESET:
+      return updateStorage(
+        update(state, { $set: initialState }),
+      );
     default:
       return state;
   }

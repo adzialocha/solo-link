@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { saveNetworkSettings } from '../actions/settings';
+import { saveNetworkSettings, resetSettings } from '../actions/settings';
 import { open, close } from '../actions/osc';
 
 class SettingsNetwork extends Component {
@@ -12,6 +12,7 @@ class SettingsNetwork extends Component {
     isError: PropTypes.bool.isRequired,
     isOpen: PropTypes.bool.isRequired,
     open: PropTypes.func.isRequired,
+    resetSettings: PropTypes.func.isRequired,
     saveNetworkSettings: PropTypes.func.isRequired,
     settings: PropTypes.object.isRequired,
   }
@@ -38,6 +39,12 @@ class SettingsNetwork extends Component {
     event.preventDefault();
 
     this.props.close();
+  }
+
+  onResetClicked(event) {
+    event.preventDefault();
+
+    this.props.resetSettings();
   }
 
   render() {
@@ -101,6 +108,14 @@ class SettingsNetwork extends Component {
             >
               Disconnect
             </button>
+
+            <button
+              className='button button-group__item'
+              disabled={this.props.isOpen}
+              onClick={this.onResetClicked}
+            >
+              Reset
+            </button>
           </div>
         </div>
       </form>
@@ -127,6 +142,7 @@ class SettingsNetwork extends Component {
 
     this.onConnectClicked = this.onConnectClicked.bind(this);
     this.onDisconnectClicked = this.onDisconnectClicked.bind(this);
+    this.onResetClicked = this.onResetClicked.bind(this);
     this.onValueChanged = this.onValueChanged.bind(this);
   }
 }
@@ -144,6 +160,7 @@ export default connect(
   mapStateToProps, {
     close,
     open,
+    resetSettings,
     saveNetworkSettings,
   }
 )(SettingsNetwork);
