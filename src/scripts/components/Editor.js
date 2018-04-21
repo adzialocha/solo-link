@@ -42,7 +42,9 @@ class Editor extends Component {
       }
 
       return (
-        <EditorParameter parameter={parameter} key={id} />
+        <div className='editor__parameters-item' key={id}>
+          <EditorParameter parameter={parameter} />
+        </div>
       );
     });
   }

@@ -1,3 +1,5 @@
+$_editor-item-size: 32rem;
+
 .editor {
   display: flex;
 
@@ -5,16 +7,24 @@
 }
 
 .editor__parameters {
+  display: flex;
+
   overflow: auto;
 
   flex: 1;
+  flex-wrap: wrap;
+}
+
+.editor__parameters-item {
+  width: $_editor-item-size;
+  height: $_editor-item-size;
 }
 
 .editor__sidebar {
   overflow-x: hidden;
   overflow-y: auto;
 
-  width: 30rem;
+  width: $_editor-item-size;
   height: 100%;
 
   background-color: $gray-darkest;
