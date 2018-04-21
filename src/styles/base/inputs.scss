@@ -86,12 +86,12 @@ input[type="radio"] {
 
 input[type="checkbox"] {
   &::before {
-    content: "▢";
+    content: "☐";
   }
 
   &:checked {
     &::before {
-      content: "▦";
+      content: "☒";
     }
   }
 }

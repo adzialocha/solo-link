@@ -1,4 +1,5 @@
 export { default as Bar } from './Bar';
+export { default as BarScene } from './BarScene';
 export { default as BarStatus } from './BarStatus';
 export { default as BarTransport } from './BarTransport';
 export { default as SettingsNetwork } from './SettingsNetwork';

@@ -1,5 +1,7 @@
 .icon {
   font-style: normal;
+
+  line-height: 2;
 }
 
 .icon--play {
@@ -11,5 +13,17 @@
 .icon--record {
   &::after {
     content: "◉";
+  }
+}
+
+.icon--add {
+  &::after {
+    content: "+";
+  }
+}
+
+.icon--toggle {
+  &::after {
+    content: "↹";
   }
 }
