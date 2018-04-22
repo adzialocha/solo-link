@@ -2,7 +2,7 @@ import ActionTypes from '../actionTypes';
 import { send } from './osc';
 import { startPlayer, stopPlayer } from './player';
 
-function startAllPlayers() {
+export function startAllPlayers() {
   return (dispatch, getState) => {
     const state = getState();
 
@@ -34,7 +34,7 @@ function startAllPlayers() {
   };
 }
 
-function stopAllPlayers() {
+export function stopAllPlayers() {
   return (dispatch, getState) => {
     const state = getState();
 

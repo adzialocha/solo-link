@@ -9,6 +9,7 @@ class BarEditor extends Component {
   static propTypes = {
     addScene: PropTypes.func.isRequired,
     currentSceneId: PropTypes.number,
+    isPlaying: PropTypes.bool.isRequired,
     removeScene: PropTypes.func.isRequired,
     toggleSidebar: PropTypes.func.isRequired,
   }
@@ -37,6 +38,7 @@ class BarEditor extends Component {
 
         <button
           className='button button--round button--blue button-group__item'
+          disabled={this.props.isPlaying}
           onClick={this.onAddSceneClicked}
         >
           <i className='icon icon--add' />
@@ -68,6 +70,7 @@ class BarEditor extends Component {
     return (
       <button
         className='button button--round button--red button-group__item'
+        disabled={this.props.isPlaying}
         onClick={this.onRemoveSceneClicked}
       >
         <i className='icon icon--remove' />
@@ -87,6 +90,7 @@ class BarEditor extends Component {
 function mapStateToProps(state) {
   return {
     currentSceneId: state.scenes.currentSceneId,
+    isPlaying: state.transport.isPlaying,
   };
 }
 

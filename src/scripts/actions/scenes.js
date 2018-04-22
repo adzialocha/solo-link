@@ -1,5 +1,7 @@
 import ActionTypes from '../actionTypes';
 
+import { startAllPlayers, stopAllPlayers } from './transport';
+
 export function loadScenes() {
   return {
     type: ActionTypes.SCENES_LOAD,
@@ -27,9 +29,21 @@ export function resetScenes() {
 };
 
 export function selectScene(id) {
-  return {
-    id,
-    type: ActionTypes.SCENES_SELECT,
+  return (dispatch, getState) => {
+    const state = getState();
+
+    if (state.transport.isPlaying) {
+      dispatch(stopAllPlayers());
+    }
+
+    dispatch({
+      id,
+      type: ActionTypes.SCENES_SELECT,
+    });
+
+    if (state.transport.isPlaying) {
+      dispatch(startAllPlayers());
+    }
   };
 };
 
