@@ -64,7 +64,9 @@ class Sidebar extends Component {
     return (
       <div className='sidebar__panel'>
         <div className='sidebar__group'>
-          <label className='sidebar__label'>Trigger</label>
+          <label className='sidebar__label'>
+            <strong>Trigger</strong>
+          </label>
 
           <select
             className='sidebar__input'
@@ -117,7 +119,9 @@ class Sidebar extends Component {
     return (
       <div className='sidebar__panel'>
         <div className='sidebar__group'>
-          <label className='sidebar__label'>Module</label>
+          <label className='sidebar__label'>
+            <strong>Module</strong>
+          </label>
 
           <select
             className='sidebar__input'
