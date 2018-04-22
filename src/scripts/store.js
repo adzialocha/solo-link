@@ -2,7 +2,7 @@ import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 
-import loggerFilter from './middlewares/logger-filter';
+import ActionTypes from './actionTypes';
 import osc from './middlewares/osc';
 import player from './middlewares/player';
 import reducers from './reducers';
@@ -17,8 +17,13 @@ export default function configureStore() {
   ];
 
   if (process.env.NODE_ENV === 'development') {
-    middleware.push(loggerFilter);
-    middleware.push(createLogger());
+    middleware.push(
+      createLogger({
+        predicate: (getState, action) => {
+          return action.type !== ActionTypes.PLAYER_STATE_CHANGE;
+        },
+      })
+    );
   }
 
   store = createStore(

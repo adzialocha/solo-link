@@ -14,6 +14,7 @@ function getOptions() {
 function start(id, triggerName, moduleName, options = {}, callback) {
   const trigger = triggers[triggerName];
   const module = modules[moduleName];
+
   const task = new Task(id, trigger, module, options, callback);
 
   task.start();

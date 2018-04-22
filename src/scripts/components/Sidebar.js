@@ -8,6 +8,7 @@ import { updateSceneParameter } from '../actions/scenes';
 
 class Sidebar extends Component {
   static propTypes = {
+    isDisabled: PropTypes.bool.isRequired,
     moduleNames: PropTypes.array.isRequired,
     moduleParameters: PropTypes.object.isRequired,
     options: PropTypes.object.isRequired,
@@ -67,6 +68,7 @@ class Sidebar extends Component {
 
           <select
             className='sidebar__input'
+            disabled={this.props.isDisabled}
             name='triggerName'
             value={this.props.options.triggerName}
             onChange={this.onOptionChanged}
@@ -97,6 +99,7 @@ class Sidebar extends Component {
 
           <input
             className='sidebar__input'
+            disabled={this.props.isDisabled}
             name={parameterName}
             type='number'
             min={parameter.min}
@@ -118,6 +121,7 @@ class Sidebar extends Component {
 
           <select
             className='sidebar__input'
+            disabled={this.props.isDisabled}
             name='moduleName'
             value={this.props.options.moduleName}
             onChange={this.onOptionChanged}
@@ -148,6 +152,7 @@ class Sidebar extends Component {
 
           <input
             className='sidebar__input'
+            disabled={this.props.isDisabled}
             name={parameterName}
             type='number'
             min={parameter.min}
@@ -203,6 +208,7 @@ class Sidebar extends Component {
 }
 
 function mapStateToProps(state) {
+  const isDisabled = state.transport.isPlaying;
   const { scenes } = state.scenes;
   const { setup } = state.setup;
   const { modules, triggers } = player.getOptions();
@@ -261,6 +267,7 @@ function mapStateToProps(state) {
   }
 
   return {
+    isDisabled,
     moduleNames,
     moduleParameters,
     options,

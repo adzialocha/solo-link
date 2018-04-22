@@ -4,7 +4,7 @@ export default {
       default: 0.5,
       max: 1,
       min: 0,
-      step: 0.1,
+      step: 0.01,
     },
   },
   value: options => {

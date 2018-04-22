@@ -28,5 +28,9 @@ export default keyMirror({
   SETUP_UPDATE_BEGIN: null,
   SETUP_UPDATE_END: null,
 
+  TRANSPORT_PLAY: null,
+  TRANSPORT_RECORD: null,
+  TRANSPORT_STOP: null,
+
   VIEW_CHANGE: null,
 });

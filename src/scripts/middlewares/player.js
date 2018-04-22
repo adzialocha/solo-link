@@ -17,7 +17,9 @@ export default store => next => action => {
       store.dispatch(changeParameterState(id, isActive));
     });
   } else if (params.type === 'stop') {
-    player.stop(params.id);
-    store.dispatch(changeParameterState(params.id, false));
+    const { id } = params;
+
+    player.stop(id);
+    store.dispatch(changeParameterState(id, false));
   }
 };

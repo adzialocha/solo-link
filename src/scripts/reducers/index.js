@@ -6,6 +6,7 @@ import player from './player';
 import scenes from './scenes';
 import settings from './settings';
 import setup from './setup';
+import transport from './transport';
 import view from './view';
 
 const rootReducer = combineReducers({
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   scenes,
   settings,
   setup,
+  transport,
   view,
 });
 

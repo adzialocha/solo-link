@@ -11,6 +11,8 @@ $_editor-item-size: 32rem;
 
   overflow: auto;
 
+  align-content: flex-start;
+
   flex: 1;
   flex-wrap: wrap;
 }

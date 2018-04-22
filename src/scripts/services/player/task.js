@@ -23,8 +23,8 @@ export default class Task {
     this.id = id;
 
     this.options = mergeOptions(
-      module.parameters,
       trigger.parameters,
+      module.parameters,
       customOptions,
     );
 
@@ -47,7 +47,9 @@ export default class Task {
 
   next() {
     this.timeout = setTimeout(() => {
-      this.callback(this.module.value(this.options.module));
+      const isActive = this.module.value(this.options.module);
+
+      this.callback(isActive);
       this.next();
     }, this.trigger.value(this.runtime, this.options.trigger));
 

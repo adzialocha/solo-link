@@ -6,12 +6,12 @@ const initialState = {
   parameters: {},
 };
 
-export default function editor(state = initialState, action) {
+export default function player(state = initialState, action) {
   switch (action.type) {
     case ActionTypes.PLAYER_STATE_CHANGE:
       return update(state, {
         parameters: {
-          [action.id]: {
+          [action.hash]: {
             $set: action.isActive,
           },
         },

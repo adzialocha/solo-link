@@ -10,6 +10,12 @@
   }
 }
 
+.icon--stop {
+  &::after {
+    content: "▣";
+  }
+}
+
 .icon--record {
   &::after {
     content: "◉";

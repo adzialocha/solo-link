@@ -28,16 +28,17 @@ export function stopPlayer(id) {
   };
 };
 
-export function changeParameterState(id, isActive, options) {
+export function changeParameterState(hash, isActive) {
   return (dispatch, getState) => {
     const state = getState();
-    const { min, max } = state.setup.parameters.find(p => p.id === id);
+    const { setup } = state.setup;
+    const { min, max, id } = setup.parameters.find(p => p.hash === hash);
     const value = isActive ? max : min;
 
     dispatch(send('/param', id, value));
 
     dispatch({
-      id,
+      hash,
       isActive,
       type: ActionTypes.PLAYER_STATE_CHANGE,
     });
