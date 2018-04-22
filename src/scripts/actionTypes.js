@@ -6,6 +6,7 @@ export default keyMirror({
   OSC_OPEN: null,
   OSC_READY: null,
 
+  EDITOR_PARAMETER_SELECT: null,
   EDITOR_TOGGLE_SIDEBAR: null,
 
   SCENES_ADD: null,

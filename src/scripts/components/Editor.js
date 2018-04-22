@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 import classnames from 'classnames';
 import { connect } from 'react-redux';
 
-import { EditorParameter } from './';
+import { Parameter, Sidebar } from './';
+import { selectParameter } from '../actions/editor';
 
 class Editor extends Component {
   static propTypes = {
@@ -11,6 +12,11 @@ class Editor extends Component {
     isSidebarExpanded: PropTypes.bool.isRequired,
     parameterIds: PropTypes.array.isRequired,
     parameters: PropTypes.array.isRequired,
+    selectParameter: PropTypes.func.isRequired,
+  }
+
+  onParameterSelected(id) {
+    this.props.selectParameter(id);
   }
 
   render() {
@@ -42,8 +48,14 @@ class Editor extends Component {
       }
 
       return (
-        <div className='editor__parameters-item' key={id}>
-          <EditorParameter parameter={parameter} />
+        <div
+          className='editor__parameters-item'
+          key={id}
+        >
+          <Parameter
+            parameter={parameter}
+            onSelected={this.onParameterSelected}
+          />
         </div>
       );
     });
@@ -56,9 +68,15 @@ class Editor extends Component {
 
     return (
       <div className='editor__sidebar'>
-        <p>Sidebar</p>
+        <Sidebar />
       </div>
     );
+  }
+
+  constructor(props) {
+    super(props);
+
+    this.onParameterSelected = this.onParameterSelected.bind(this);
   }
 }
 
@@ -72,5 +90,7 @@ function mapStateToProps(state) {
 }
 
 export default connect(
-  mapStateToProps
+  mapStateToProps, {
+    selectParameter,
+  }
 )(Editor);

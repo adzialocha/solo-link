@@ -5,3 +5,10 @@ export function toggleSidebar() {
     type: ActionTypes.EDITOR_TOGGLE_SIDEBAR,
   };
 };
+
+export function selectParameter(id) {
+  return {
+    id,
+    type: ActionTypes.EDITOR_PARAMETER_SELECT,
+  };
+};

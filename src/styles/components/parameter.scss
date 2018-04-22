@@ -1,0 +1,9 @@
+.parameter {
+  height: 100%;
+
+  cursor: pointer;
+}
+
+.parameter--selected {
+  background-color: $blue;
+}
