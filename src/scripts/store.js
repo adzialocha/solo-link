@@ -6,6 +6,7 @@ import ActionTypes from './actionTypes';
 import osc from './middlewares/osc';
 import player from './middlewares/player';
 import reducers from './reducers';
+import transport from './middlewares/transport';
 
 let store;
 
@@ -14,6 +15,7 @@ export default function configureStore() {
     osc,
     player,
     thunk,
+    transport,
   ];
 
   if (process.env.NODE_ENV === 'development') {

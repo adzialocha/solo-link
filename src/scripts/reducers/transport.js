@@ -3,6 +3,7 @@ import update from 'immutability-helper';
 import ActionTypes from '../actionTypes';
 
 const initialState = {
+  cuePointCount: 0,
   isPlaying: false,
   isRecording: false,
 };
@@ -22,6 +23,10 @@ export default function transport(state = initialState, action) {
       return update(state, {
         isPlaying: { $set: true },
         isRecording: { $set: true },
+      });
+    case ActionTypes.TRANSPORT_STATUS_RECEIVED:
+      return update(state, {
+        cuePointCount: { $set: action.cuePointCount },
       });
     default:
       return state;

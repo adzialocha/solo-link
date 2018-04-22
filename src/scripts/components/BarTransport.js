@@ -3,10 +3,14 @@ import React, { Component } from 'react';
 import classnames from 'classnames';
 import { connect } from 'react-redux';
 
+import { expandBar, collapseBar } from '../actions/view';
 import { play, stop, record } from '../actions/transport';
 
 class BarTransport extends Component {
   static propTypes = {
+    collapseBar: PropTypes.func.isRequired,
+    expandBar: PropTypes.func.isRequired,
+    isOpen: PropTypes.bool.isRequired,
     isPlaying: PropTypes.bool.isRequired,
     isRecording: PropTypes.bool.isRequired,
     play: PropTypes.func.isRequired,
@@ -24,6 +28,22 @@ class BarTransport extends Component {
 
   onRecordClicked() {
     this.props.record();
+  }
+
+  onPlayEntered() {
+    this.props.expandBar('play');
+  }
+
+  onPlayLeft() {
+    this.props.collapseBar();
+  }
+
+  onRecordEntered() {
+    this.props.expandBar('record');
+  }
+
+  onRecordLeft() {
+    this.props.collapseBar();
   }
 
   render() {
@@ -50,16 +70,32 @@ class BarTransport extends Component {
 
     return (
       <div className='button-group'>
-        <button className={playClassName}>
-          <i className='icon icon--play' onClick={this.onPlayClicked} />
+        <button
+          className={playClassName}
+          disabled={!this.props.isOpen}
+          onClick={this.onPlayClicked}
+          onMouseEnter={this.onPlayEntered}
+          onMouseLeave={this.onPlayLeft}
+        >
+          <i className='icon icon--play' />
         </button>
 
-        <button className={stopClassName}>
-          <i className='icon icon--stop' onClick={this.onStopClicked} />
+        <button
+          className={stopClassName}
+          disabled={!this.props.isOpen}
+          onClick={this.onStopClicked}
+        >
+          <i className='icon icon--stop' />
         </button>
 
-        <button className={recordClassName}>
-          <i className='icon icon--record' onClick={this.onRecordClicked} />
+        <button
+          className={recordClassName}
+          disabled={!this.props.isOpen}
+          onClick={this.onRecordClicked}
+          onMouseEnter={this.onRecordEntered}
+          onMouseLeave={this.onRecordLeft}
+        >
+          <i className='icon icon--record' />
         </button>
       </div>
     );
@@ -69,19 +105,26 @@ class BarTransport extends Component {
     super(props);
 
     this.onPlayClicked = this.onPlayClicked.bind(this);
-    this.onStopClicked = this.onStopClicked.bind(this);
+    this.onPlayEntered = this.onPlayEntered.bind(this);
+    this.onPlayLeft = this.onPlayLeft.bind(this);
     this.onRecordClicked = this.onRecordClicked.bind(this);
+    this.onRecordEntered = this.onRecordEntered.bind(this);
+    this.onRecordLeft = this.onRecordLeft.bind(this);
+    this.onStopClicked = this.onStopClicked.bind(this);
   }
 }
 
 function mapStateToProps(state) {
   return {
     ...state.transport,
+    isOpen: state.osc.isOpen,
   };
 }
 
 export default connect(
   mapStateToProps, {
+    collapseBar,
+    expandBar,
     play,
     record,
     stop,

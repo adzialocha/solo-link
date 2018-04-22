@@ -59,7 +59,9 @@ export function play() {
 export function playAtCue(cueIndex) {
   return dispatch => {
     dispatch(send('/transport/jump', cueIndex));
-    dispatch(play());
+    dispatch(startAllPlayers());
+    dispatch(send('/transport/continue'));
+    dispatch({ type: ActionTypes.TRANSPORT_PLAY });
   };
 }
 
@@ -83,5 +85,11 @@ export function recordAtCue(cueIndex) {
   return dispatch => {
     dispatch(send('/transport/jump', cueIndex));
     dispatch(record());
+  };
+}
+
+export function requestStatus() {
+  return dispatch => {
+    dispatch(send('/status'));
   };
 }

@@ -2,22 +2,24 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classnames from 'classnames';
 
-class BarScenes extends Component {
+class BarSelectItem extends Component {
   static propTypes = {
+    id: PropTypes.number.isRequired,
     isSelected: PropTypes.bool.isRequired,
     label: PropTypes.number.isRequired,
-    onSceneSelected: PropTypes.func.isRequired,
-    scene: PropTypes.object.isRequired,
+    onSelected: PropTypes.func.isRequired,
   }
 
   onClicked() {
-    this.props.onSceneSelected(this.props.scene.id);
+    this.props.onSelected(this.props.id);
   }
 
   render() {
-    const className = classnames('button button--round button--clear button-group__item', {
-      'button--blue': this.props.isSelected,
-    });
+    const className = classnames(
+      'button button--round button--clear button-group__item', {
+        'button--blue': this.props.isSelected,
+      }
+    );
 
     return (
       <button
@@ -36,4 +38,4 @@ class BarScenes extends Component {
   }
 }
 
-export default BarScenes;
+export default BarSelectItem;

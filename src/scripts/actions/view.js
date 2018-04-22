@@ -6,3 +6,16 @@ export function changeViewTo(name) {
     name,
   };
 };
+
+export function expandBar(mode) {
+  return {
+    mode,
+    type: ActionTypes.VIEW_EXPAND_BAR,
+  };
+}
+
+export function collapseBar() {
+  return {
+    type: ActionTypes.VIEW_COLLAPSE_BAR,
+  };
+}

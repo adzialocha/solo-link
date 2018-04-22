@@ -30,7 +30,11 @@ export default keyMirror({
 
   TRANSPORT_PLAY: null,
   TRANSPORT_RECORD: null,
+  TRANSPORT_SELECT_CUE_POINT: null,
+  TRANSPORT_STATUS_RECEIVED: null,
   TRANSPORT_STOP: null,
 
   VIEW_CHANGE: null,
+  VIEW_COLLAPSE_BAR: null,
+  VIEW_EXPAND_BAR: null,
 });

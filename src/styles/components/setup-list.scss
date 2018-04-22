@@ -14,6 +14,12 @@
   padding: .2rem;
 }
 
+.setup-list__item--track {
+  + .setup-list__item--track {
+    margin-top: $default-spacing;
+  }
+}
+
 .setup-list__item--device {
   .setup-list__badge {
     background-color: $red;
@@ -23,6 +29,10 @@
     padding: $default-spacing;
 
     background-color: $gray-darkest;
+  }
+
+  + .setup-list__item--device {
+    margin-top: $default-spacing;
   }
 }
 
@@ -34,16 +44,26 @@
   &:nth-child(even) {
     background-color: lighten($gray-darkest, 2%);
   }
-}
 
-.setup-list__item {
-  + .setup-list__item {
-    margin-top: $default-spacing;
+  &:first-child {
+    .setup-list__parameters-label {
+      padding-top: 0;
+    }
+  }
+
+  &:last-child {
+    .setup-list__parameters-label {
+      padding-bottom: 0;
+    }
   }
 }
 
 .setup-list__parameters-label {
   display: flex;
+
+  padding-top: $default-spacing;
+  padding-right: $default-spacing;
+  padding-bottom: $default-spacing;
 
   justify-content: space-between;
 

@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { BarScenesItem } from './';
+import { BarSelectItem } from './';
 import { selectScene } from '../actions/scenes';
 
 class BarScenes extends Component {
@@ -27,12 +27,12 @@ class BarScenes extends Component {
   renderSceneList() {
     return this.props.scenes.map((scene, index) => {
       return (
-        <BarScenesItem
+        <BarSelectItem
           isSelected={scene.id === this.props.currentSceneId}
           key={scene.id}
           label={index + 1}
-          scene={scene}
-          onSceneSelected={this.onSceneSelected}
+          id={scene.id}
+          onSelected={this.onSceneSelected}
         />
       );
     });

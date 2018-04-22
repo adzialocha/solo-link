@@ -56,7 +56,7 @@ input[type="submit"] {
   background-color: transparent;
 
   &.button--gray {
-    color: $gray;
+    color: $gray-light;
   }
 
   &.button--red {
@@ -69,6 +69,12 @@ input[type="submit"] {
 
   &.button--blue {
     color: $blue;
+  }
+
+  &[disabled] {
+    color: $gray-darker;
+
+    background-color: transparent;
   }
 }
 

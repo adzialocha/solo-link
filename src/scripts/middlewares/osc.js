@@ -34,7 +34,15 @@ function registerEventHandlers(store) {
 }
 
 function registerMessageHandlers(store) {
-  // @TODO
+  osc.on('/status', message => {
+    store.dispatch({
+      cuePointCount: message.args[3],
+      isCuePointSelected: message.args[0] === 1,
+      isPlaying: message.args[1] === 1,
+      isRecording: message.args[2] === 1,
+      type: ActionTypes.TRANSPORT_STATUS_RECEIVED,
+    });
+  });
 }
 
 function handleAction(store, type) {

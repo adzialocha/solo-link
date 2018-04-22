@@ -9,18 +9,22 @@ export function init() {
 };
 
 export function open() {
-  return {
-    [OSC_ACTION]: {
-      type: 'open',
-    },
+  return dispatch => {
+    dispatch({
+      [OSC_ACTION]: {
+        type: 'open',
+      },
+    });
   };
 };
 
 export function close() {
-  return {
-    [OSC_ACTION]: {
-      type: 'close',
-    },
+  return dispatch => {
+    dispatch({
+      [OSC_ACTION]: {
+        type: 'close',
+      },
+    });
   };
 };
 
