@@ -6,31 +6,15 @@ import { render } from 'react-dom';
 
 import configureStore from './store';
 import { App } from './views';
-import { init, open, close } from './actions/osc';
-import { loadScenes } from './actions/scenes';
-import { loadSettings } from './actions/settings';
-import { loadSetup } from './actions/setup';
+import { initializeApp, unloadApp } from './actions/app';
 
 const store = configureStore();
 
-function initializeOSC() {
-  store.dispatch(init());
+store.dispatch(initializeApp());
 
-  window.onbeforeunload = () => {
-    store.dispatch(close());
-  };
-}
-
-function initializeProject() {
-  store.dispatch(loadScenes());
-  store.dispatch(loadSetup());
-  store.dispatch(loadSettings());
-
-  store.dispatch(open());
-}
-
-initializeOSC();
-initializeProject();
+window.onbeforeunload = () => {
+  store.dispatch(unloadApp());
+};
 
 render(
   <Provider store={store}>
