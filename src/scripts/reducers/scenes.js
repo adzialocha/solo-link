@@ -51,9 +51,11 @@ export default function scenes(state = initialState, action) {
         })
       );
     case ActionTypes.SCENES_SELECT:
-      return update(state, {
-        currentSceneId: { $set: action.id },
-      });
+      return updateStorage(
+        update(state, {
+          currentSceneId: { $set: action.id },
+        })
+      );
     case ActionTypes.SCENES_RESET:
       return updateStorage(
         update(state, { $set: initialState }),
