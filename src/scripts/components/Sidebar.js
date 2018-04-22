@@ -95,7 +95,7 @@ class Sidebar extends Component {
 
       return (
         <div className='sidebar__group' key={index}>
-          <label className='sidebar__label'>{ parameterName }</label>
+          <label className='sidebar__label'>{ parameter.label }</label>
 
           <input
             className='sidebar__input'
@@ -148,7 +148,7 @@ class Sidebar extends Component {
 
       return (
         <div className='sidebar__group' key={index}>
-          <label className='sidebar__label'>{ parameterName }</label>
+          <label className='sidebar__label'>{ parameter.label }</label>
 
           <input
             className='sidebar__input'
