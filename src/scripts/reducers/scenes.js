@@ -12,6 +12,7 @@ const initialState = {
 
 const initialSceneState = {
   id: 1,
+  parameters: {},
 };
 
 function updateStorage(state) {
@@ -56,6 +57,20 @@ export default function scenes(state = initialState, action) {
     case ActionTypes.SCENES_RESET:
       return updateStorage(
         update(state, { $set: initialState }),
+      );
+    case ActionTypes.SCENES_UPDATE_PARAMETER:
+      const sceneIndex = state.scenes.findIndex(s => s.id === action.sceneId);
+
+      return updateStorage(
+        update(state, {
+          scenes: {
+            [sceneIndex]: {
+              parameters: {
+                [action.parameterId]: { $set: action.values },
+              },
+            },
+          },
+        })
       );
     default:
       return state;

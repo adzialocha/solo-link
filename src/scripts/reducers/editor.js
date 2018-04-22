@@ -4,7 +4,7 @@ import ActionTypes from '../actionTypes';
 
 const initialState = {
   currentParameterId: null,
-  isSidebarExpanded: false,
+  isSidebarExpanded: true,
 };
 
 export default function editor(state = initialState, action) {
