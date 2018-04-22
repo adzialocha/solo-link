@@ -6,9 +6,9 @@ export function toggleSidebar() {
   };
 };
 
-export function selectParameter(id) {
+export function selectParameter(hash) {
   return {
-    id,
+    hash,
     type: ActionTypes.EDITOR_PARAMETER_SELECT,
   };
 };

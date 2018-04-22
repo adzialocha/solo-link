@@ -64,6 +64,7 @@
     "immutability-helper": "^2.6.6",
     "ip": "^1.1.5",
     "keymirror": "^0.1.1",
+    "md5": "^2.2.1",
     "normalize.css": "^8.0.0",
     "osc-js": "^1.2.2",
     "prop-types": "^15.6.1",

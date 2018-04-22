@@ -10,7 +10,7 @@ const initialState = {
     host: 'localhost',
     port: 9789,
   },
-  parameterIds: [],
+  parameterHashes: [],
 };
 
 function updateStorage(state) {
@@ -35,14 +35,14 @@ export default function settings(state = initialState, action) {
     case ActionTypes.SETTINGS_PARAMETERS_ADD:
       return updateStorage(
         update(state, {
-          parameterIds: { $push: [action.id] },
+          parameterHashes: { $push: [action.hash] },
         })
       );
     case ActionTypes.SETTINGS_PARAMETERS_REMOVE:
       return updateStorage(
         update(state, {
-          parameterIds: {
-            $splice: [[state.parameterIds.indexOf(action.id), 1]],
+          parameterHashes: {
+            $splice: [[state.parameterHashes.indexOf(action.hash), 1]],
           },
         })
       );

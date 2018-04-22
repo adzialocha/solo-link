@@ -2,24 +2,23 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { addParameterId, removeParameterId } from '../actions/settings';
+import { addParameterHash, removeParameterHash } from '../actions/settings';
 
 class SetupList extends Component {
   static propTypes = {
-    addParameterId: PropTypes.func.isRequired,
-    parameterIds: PropTypes.array.isRequired,
-    removeParameterId: PropTypes.func.isRequired,
+    addParameterHash: PropTypes.func.isRequired,
+    parameterHashes: PropTypes.array.isRequired,
+    removeParameterHash: PropTypes.func.isRequired,
     setup: PropTypes.object.isRequired,
   }
 
   onParameterChanged(event) {
-    const { name, checked } = event.target;
-    const id = parseInt(name, 10);
+    const { name: hash, checked } = event.target;
 
     if (!checked) {
-      this.props.removeParameterId(id);
+      this.props.removeParameterHash(hash);
     } else {
-      this.props.addParameterId(id);
+      this.props.addParameterHash(hash);
     }
   }
 
@@ -91,8 +90,8 @@ class SetupList extends Component {
 
             <input
               className='setup-list__parameters-checkbox'
-              checked={this.props.parameterIds.includes(parameter.id)}
-              name={parameter.id}
+              checked={this.props.parameterHashes.includes(parameter.hash)}
+              name={parameter.hash}
               type='checkbox'
               onChange={this.onParameterChanged}
             />
@@ -111,17 +110,17 @@ class SetupList extends Component {
 
 function mapStateToProps(state) {
   const {
-    parameterIds,
+    parameterHashes,
   } = state.settings;
 
   return {
-    parameterIds,
+    parameterHashes,
   };
 }
 
 export default connect(
   mapStateToProps, {
-    addParameterId,
-    removeParameterId,
+    addParameterHash,
+    removeParameterHash,
   }
 )(SetupList);

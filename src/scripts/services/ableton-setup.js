@@ -1,4 +1,5 @@
 import OSC from 'osc-js';
+import md5 from 'md5';
 
 const EMPTY_TAG = '<empty>';
 
@@ -115,9 +116,34 @@ export default class AbletonSetup {
     }) === -1;
   }
 
+  generateHashes() {
+    this.setup.parameters = this.setup.parameters.map(parameter => {
+      const device = this.setup.devices.find(device => {
+        return device.parameterIds.includes(parameter.id);
+      });
+
+      const track = this.setup.tracks.find(track => {
+        return track.deviceIds.includes(device.id);
+      });
+
+      const fullname = [
+        track.name,
+        device.name,
+        parameter.name,
+      ].join(' ');
+
+      parameter.fullname = fullname;
+      parameter.hash = md5(fullname);
+
+      return parameter;
+    });
+  }
+
   finalizeSetup() {
     this.isLoading = false;
     this.isComplete = true;
+
+    this.generateHashes();
 
     this.resolve(this.setup);
   }

@@ -66,7 +66,7 @@ export default function scenes(state = initialState, action) {
           scenes: {
             [sceneIndex]: {
               parameters: {
-                [action.parameterId]: { $set: action.values },
+                [action.parameterHash]: { $set: action.values },
               },
             },
           },

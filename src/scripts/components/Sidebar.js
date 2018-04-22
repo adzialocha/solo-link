@@ -2,28 +2,30 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { getTriggerNames, getModuleNames } from '../services/player';
+import player from '../services/player';
 import { updateSceneParameter } from '../actions/scenes';
 
 class Sidebar extends Component {
   static propTypes = {
+    moduleNames: PropTypes.array.isRequired,
+    options: PropTypes.object.isRequired,
     parameter: PropTypes.object,
     scene: PropTypes.object,
+    triggerNames: PropTypes.array.isRequired,
     updateSceneParameter: PropTypes.func.isRequired,
-    values: PropTypes.object.isRequired,
   }
 
-  onValueChanged(event) {
+  onOptionChanged(event) {
     const { name, value } = event.target;
 
-    const values = Object.assign({}, this.props.values || {}, {
+    const options = Object.assign({}, this.props.options || {}, {
       [name]: value,
     });
 
     this.props.updateSceneParameter(
       this.props.scene.id,
-      this.props.parameter.id,
-      values
+      this.props.parameter.hash,
+      options
     );
   }
 
@@ -47,18 +49,13 @@ class Sidebar extends Component {
   renderHeader() {
     return (
       <div className='sidebar__panel'>
-        <p>
-          <strong>{ this.props.parameter.name }</strong>
-          <span> (#{ this.props.parameter.id })</span>
-        </p>
+        <p><strong>{ this.props.parameter.fullname }</strong></p>
       </div>
     );
   }
 
   renderMain() {
-    const { values } = this.props;
-    const currentTrigger = 'trigger' in values ? values.trigger : '-1';
-    const currentModule = 'module' in values ? values.module : '-1';
+    const { options } = this.props;
 
     return (
       <div className='sidebar__panel'>
@@ -67,11 +64,11 @@ class Sidebar extends Component {
 
           <select
             className='sidebar__input'
-            name='trigger'
-            value={currentTrigger}
-            onChange={this.onValueChanged}
+            name='triggerName'
+            value={options.triggerName}
+            onChange={this.onOptionChanged}
           >
-            <option value='-1'>No trigger selected</option>
+            <option value=''>No trigger selected</option>
             { this.renderTriggers() }
           </select>
         </div>
@@ -81,11 +78,11 @@ class Sidebar extends Component {
 
           <select
             className='sidebar__input'
-            name='module'
-            value={currentModule}
-            onChange={this.onValueChanged}
+            name='moduleName'
+            value={options.moduleName}
+            onChange={this.onOptionChanged}
           >
-            <option value='-1'>No module selected</option>
+            <option value=''>No module selected</option>
             { this.renderModules() }
           </select>
         </div>
@@ -94,52 +91,56 @@ class Sidebar extends Component {
   }
 
   renderTriggers() {
-    return getTriggerNames().map((triggerKey, index) => {
-      return (
-        <option
-          key={index}
-        >
-          { triggerKey }
-        </option>
-      );
+    return this.props.triggerNames.map((triggerName, index) => {
+      return <option key={index} value={triggerName}>{ triggerName }</option>;
     });
   }
 
   renderModules() {
-    return getModuleNames().map((moduleKey, index) => {
-      return (
-        <option
-          key={index}
-        >
-          { moduleKey }
-        </option>
-      );
+    return this.props.moduleNames.map((moduleName, index) => {
+      return <option key={index} value={moduleName}>{ moduleName }</option>;
     });
   }
 
   constructor(props) {
     super(props);
 
-    this.onValueChanged = this.onValueChanged.bind(this);
+    this.onOptionChanged = this.onOptionChanged.bind(this);
   }
 }
 
 function mapStateToProps(state) {
+  const { scenes } = state.scenes;
   const { setup } = state.setup;
+
+  const defaultValues = {
+    moduleName: '',
+    moduleOptions: {},
+    triggerName: '',
+    triggerOptions: {},
+  };
+
   const parameter = setup.parameters.find(parameter => {
-    return state.editor.currentParameterId === parameter.id;
+    return state.editor.currentParameterHash === parameter.hash;
   });
 
-  const scene = state.scenes.scenes.find(scene => {
+  const scene = scenes.find(scene => {
     return scene.id === state.scenes.currentSceneId;
   });
 
-  const values = scene ? scene.parameters[state.editor.currentParameterId] : {};
+  const hasValues = parameter && (parameter.hash in scene.parameters);
+  const options = hasValues ? scene.parameters[parameter.hash] : defaultValues;
+
+  const playerOptions = player.getOptions();
+  const moduleNames = Object.keys(playerOptions.modules);
+  const triggerNames = Object.keys(playerOptions.triggers);
 
   return {
-    scene,
+    moduleNames,
+    options,
     parameter,
-    values: values || {},
+    scene,
+    triggerNames,
   };
 }
 

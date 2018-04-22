@@ -9,6 +9,8 @@ export default keyMirror({
   EDITOR_PARAMETER_SELECT: null,
   EDITOR_TOGGLE_SIDEBAR: null,
 
+  PLAYER_STATE_CHANGE: null,
+
   SCENES_ADD: null,
   SCENES_LOAD: null,
   SCENES_REMOVE: null,

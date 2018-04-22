@@ -11,7 +11,7 @@ class Parameter extends Component {
   }
 
   onSelected() {
-    this.props.onSelected(this.props.parameter.id);
+    this.props.onSelected(this.props.parameter.hash);
   }
 
   render() {
@@ -21,7 +21,7 @@ class Parameter extends Component {
 
     return (
       <div className={className} onClick={this.onSelected}>
-        { this.props.parameter.name }
+        { this.props.parameter.fullname }
       </div>
     );
   }
@@ -35,7 +35,7 @@ class Parameter extends Component {
 
 function mapStateToProps(state, props) {
   return {
-    isSelected: state.editor.currentParameterId === props.parameter.id,
+    isSelected: state.editor.currentParameterHash === props.parameter.hash,
   };
 }
 

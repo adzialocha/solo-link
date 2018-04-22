@@ -33,9 +33,9 @@ export function selectScene(id) {
   };
 };
 
-export function updateSceneParameter(sceneId, parameterId, values) {
+export function updateSceneParameter(sceneId, parameterHash, values) {
   return {
-    parameterId,
+    parameterHash,
     sceneId,
     type: ActionTypes.SCENES_UPDATE_PARAMETER,
     values,

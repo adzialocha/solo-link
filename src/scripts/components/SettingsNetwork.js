@@ -21,7 +21,6 @@ class SettingsNetwork extends Component {
     event.preventDefault();
 
     const { name, value } = event.target;
-
     const newSettings = Object.assign({}, this.props.settings, {
       [name]: value,
     });

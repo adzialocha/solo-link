@@ -3,7 +3,7 @@ import update from 'immutability-helper';
 import ActionTypes from '../actionTypes';
 
 const initialState = {
-  currentParameterId: null,
+  currentParameterHash: null,
   isSidebarExpanded: true,
 };
 
@@ -15,11 +15,11 @@ export default function editor(state = initialState, action) {
       });
     case ActionTypes.EDITOR_PARAMETER_SELECT:
       return update(state, {
-        currentParameterId: { $set: action.id },
+        currentParameterHash: { $set: action.hash },
       });
     case ActionTypes.SCENES_REMOVE:
       return update(state, {
-        currentParameterId: { $set: null },
+        currentParameterHash: { $set: null },
       });
     default:
       return state;

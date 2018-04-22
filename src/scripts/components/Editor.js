@@ -10,13 +10,13 @@ class Editor extends Component {
   static propTypes = {
     currentSceneId: PropTypes.number,
     isSidebarExpanded: PropTypes.bool.isRequired,
-    parameterIds: PropTypes.array.isRequired,
+    parameterHashes: PropTypes.array.isRequired,
     parameters: PropTypes.array.isRequired,
     selectParameter: PropTypes.func.isRequired,
   }
 
-  onParameterSelected(id) {
-    this.props.selectParameter(id);
+  onParameterSelected(hash) {
+    this.props.selectParameter(hash);
   }
 
   render() {
@@ -40,9 +40,15 @@ class Editor extends Component {
   }
 
   renderParameters() {
-    return this.props.parameterIds.map(id => {
-      const parameter = this.props.parameters.find(p => p.id === id);
+    const parameters = this.props.parameterHashes
+      .map(hash => {
+        return this.props.parameters.find(p => p.hash === hash);
+      })
+      .sort((a, b) => {
+        return a.fullname.localeCompare(b.fullname);
+      });
 
+    return parameters.map(parameter => {
       if (!parameter) {
         return null;
       }
@@ -50,7 +56,7 @@ class Editor extends Component {
       return (
         <div
           className='editor__parameters-item'
-          key={id}
+          key={parameter.id}
         >
           <Parameter
             parameter={parameter}
@@ -84,7 +90,7 @@ function mapStateToProps(state) {
   return {
     ...state.editor,
     currentSceneId: state.scenes.currentSceneId,
-    parameterIds: state.settings.parameterIds,
+    parameterHashes: state.settings.parameterHashes,
     parameters: state.setup.setup.parameters,
   };
 }

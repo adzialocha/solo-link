@@ -13,16 +13,16 @@ export function saveNetworkSettings(settings) {
   };
 };
 
-export function addParameterId(id) {
+export function addParameterHash(hash) {
   return {
-    id,
+    hash,
     type: ActionTypes.SETTINGS_PARAMETERS_ADD,
   };
 };
 
-export function removeParameterId(id) {
+export function removeParameterHash(hash) {
   return {
-    id,
+    hash,
     type: ActionTypes.SETTINGS_PARAMETERS_REMOVE,
   };
 };
